@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -52,6 +53,8 @@ namespace MonkeyFinder6000.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                PersonalizeTitlebar();
+
                 Xamarin.Forms.Forms.Init(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
@@ -72,6 +75,32 @@ namespace MonkeyFinder6000.UWP
             }
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        //https://docs.microsoft.com/en-us/windows/uwp/design/shell/title-bar
+        void PersonalizeTitlebar()
+        {
+            var color = Windows.UI.ColorHelper.FromArgb(255, 52, 152, 219);
+            var colorDark1 = Windows.UI.ColorHelper.FromArgb(255, 52, 124, 219);
+            var colorDark2 = Windows.UI.ColorHelper.FromArgb(255, 52, 100, 219);
+
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+            // Set active window colors
+            titleBar.ForegroundColor = Windows.UI.Colors.White;
+            titleBar.BackgroundColor = color;
+            titleBar.ButtonForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonBackgroundColor = color;
+            titleBar.ButtonHoverForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonHoverBackgroundColor = colorDark1;
+            titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonPressedBackgroundColor = colorDark2;
+
+            // Set inactive window colors
+            titleBar.InactiveForegroundColor = Windows.UI.Colors.White;
+            titleBar.InactiveBackgroundColor = color;
+            titleBar.ButtonInactiveForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonInactiveBackgroundColor = color;
         }
 
         /// <summary>
