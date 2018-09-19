@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MonkeyFinder6000.ViewModel;
 using Xamarin.Forms;
 
 namespace MonkeyFinder6000
@@ -12,6 +8,16 @@ namespace MonkeyFinder6000
         public MainPage()
         {
             InitializeComponent();
+
+            if(Device.RuntimePlatform == Device.UWP)
+            {
+                ToolbarItems.Add(new ToolbarItem()
+                {
+                    Text = "Refresh",
+                    Icon = "Assets/refresh.png",
+                    Command = ((MonkeysViewModel)BindingContext).GetMonkeysCommand
+                });
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ namespace MonkeyFinder6000.ViewModel
         public ICommand GetClosestCommand { get; }
         public MonkeysViewModel()
         {
+            Title = "Monkey Finder";
             Monkeys = new ObservableRangeCollection<Monkey>();
             GetMonkeysCommand = new Command(async () => await GetMonkeysAsync());
             GetClosestCommand = new Command(async () => await GetClosestAsync());
